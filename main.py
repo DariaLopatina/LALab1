@@ -23,12 +23,16 @@ def scale(object, factor):
 def mirror(object, axis):
     if axis == 'x':
         mirror_matrix = np.array([[1, 0], [0, -1]])
-    elif axis == 'y':
+    else:
         mirror_matrix = np.array([[-1, 0], [0, 1]])
     return object @ mirror_matrix.T
-bc vbfv
 
-
+def title(object, axis, factor):
+    if axis == 'x':
+        title_matrix = np.array([[1, factor], [0, 1]])
+    else:
+        title_matrix = np.array([[1, 0], [factor, 1]])
+    return object @ title_matrix.T
 
 def universal (object, matrix):
     return object @ matrix
