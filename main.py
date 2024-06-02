@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 batman = np.array([[0, 0], [1, 0.2], [0.4, 1], [0.5, 0.4], [0, 0.8], [-0.5, 0.4], [-0.4, 1], [-1, 0.2], [0, 0]])
-vector = np.array([[0, 0], [1, 1], [2, 0.5], [3, 2], [4, 0], [5, 3]])
-pyramid = np.array([[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1], [0, 0, 0]])
+vector = np.array([[0, 0], [1, 2], [2, 3], [3, 2], [4, 0], [5, 3]])
+cube = np.array([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]])
 
 #vector = np.array([[0, 0], [4, 5]])
 #print(vector)
@@ -76,7 +76,7 @@ def object_manipulation(object):
 
 def plot_3D(object):
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3D')
+    ax = fig.add_subplot(111, projection='3d')
     ax.plot(object[:, 0], object[:, 1], object[:, 2], marker='o')
     plt.show()
 
@@ -117,7 +117,7 @@ def object_manipulation_3D(object):
 
 object_manipulation(batman)
 object_manipulation(vector)
-object_manipulation_3D(pyramid)
+object_manipulation_3D(cube)
 
 
 
