@@ -1,7 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-vector = np.array([[0, 0], [1, 0.2], [0.4, 1], [0.5, 0.4], [0, 0.8], [-0.5, 0.4], [-0.4, 1], [-1, 0.2], [0, 0]])
+batman = np.array([[0, 0], [1, 0.2], [0.4, 1], [0.5, 0.4], [0, 0.8], [-0.5, 0.4], [-0.4, 1], [-1, 0.2], [0, 0]])
+vector = np.array([[0, 0], [1, 1], [2, 0.5], [3, 2], [4, 0], [5, 3]])
+pyramid = np.array([[0, 0, 0], [1, 0, 0], [0.5, 1, 0], [0.5, 0.5, 1], [0, 0, 0]])
+
 #vector = np.array([[0, 0], [4, 5]])
 #print(vector)
 # m = np.array([[3, 0], [0, 3]]) збільшення
@@ -29,6 +32,8 @@ def scale(object, factor):
 def mirror(object, axis):
     if axis == 'x':
         mirror_matrix = np.array([[1, 0], [0, -1]])
+    elif axis == 'xy':
+        mirror_matrix = np.array([[-1, 0], [0, -1]])
     else:
         mirror_matrix = np.array([[-1, 0], [0, 1]])
 
@@ -69,19 +74,50 @@ def object_manipulation(object):
     plot(result, title)
 
 
+def plot_3D(object):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3D')
+    ax.plot(object[:, 0], object[:, 1], object[:, 2], marker='o')
+    plt.show()
+
+def scale_3D(object, factor):
+    scale_matrix = np.array([[factor, 0, 0],
+                               [0, factor, 0],
+                               [0, 0, factor]])
+    return object @ scale_matrix.T
+
+
+def mirror_3D(object, axis):
+    if axis == 'xy':
+        mirror_matrix = np.array([[1, 0, 0],
+                                  [0, 1, 0],
+                                  [0, 0, -1]])
+    elif axis == 'xz':
+        mirror_matrix = np.array([[1, 0, 0],
+                                  [0, -1, 0],
+                                  [0, 0, 1]])
+    elif axis == 'yz':
+        mirror_matrix = np.array([[-1, 0, 0],
+                                  [0, 1, 0],
+                                  [0, 0, 1]])
+
+    return object @ mirror_matrix.T
 
 
 
+def object_manipulation_3D(object):
+    plot_3D(object)
+
+    result = scale_3D(object, 3)
+    plot_3D(result)
+
+    result = mirror_3D(object, 'xy')
+    plot_3D(result)
+
+
+object_manipulation(batman)
 object_manipulation(vector)
-
-
-
-
-#def ThreeD_manipulation():
-
-
-
-
+object_manipulation_3D(pyramid)
 
 
 
