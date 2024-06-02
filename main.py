@@ -121,6 +121,8 @@ object_manipulation_3D(pyramid)
 
 
 
+
+
 #m = np.array([[-1, 0], [0, 1]])
 #vector = vector @ m
 #plt.plot(vector[:, 0], vector[:, 1])
